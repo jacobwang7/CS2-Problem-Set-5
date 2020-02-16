@@ -86,14 +86,14 @@ This will involve:
 
 The first two changes should be straightforward. The third change will be a little tricky so I will give you a big hint. In the `Double` version of this class, if the `String` chunk under consideration was not an operator, you called `Double.parseDouble(e)` to turn it into a `Double` and then pushed that `Double` on the stack. Here you will need to first divide the `String` chunk, `e`, into two parts: the part before the `/` and the part after the `/`. Then you'll turn each of those part into a `Long` using `Long.parseLong()`. Then you'll create a new `FractionClass` with those components. You can do this as follows (but don't forget to implement the last two commented lines!).
 
-``
+```java
 // if e is not one of the four operators...
    String[] fractionparts = e.split("\\/");
    long top = Long.parseLong(fractionparts[0]);
    long bottom = Long.parseLong(fractionparts[1]);
    // Create a new FractionClass object with top and bottom.
    // Push it onto the the mathstack Stack.
-``
+```
 
 ---
 
