@@ -53,7 +53,7 @@ public interface Comparable<T> {
 }
 ```
 
-We've talked about generics in class, and you see it here. In the examples we've seen so far, Since the `Fraction` interface says `Comparable<Fraction>`, that means that when we write our implementation of `compareTo()`, we substitute in `Fraction` for `T `. Thus, when you write your `compareTo()` method in your `FractionClass.java` file, the method will look like this:
+Since the `Fraction` interface says `Comparable<Fraction>`, that means that when we write our implementation of `compareTo()`, we substitute in `Fraction` for `T `. Thus, when you write your `compareTo()` method in your `FractionClass.java` file, the method will look like this:
 
 ```java
 int compareTo(Fraction other) {
@@ -78,10 +78,10 @@ You must provide **two additional unit tests of each of the mathematical operati
 ## PART 2: Refactoring the `PostFix` class
 You'll recall that in lecture, we twice wrote a `Postfix` class to be able to do arithmetic with postfix notation using a stack. In the `src` directory, I have provided all of the necessary code for doing this with `Double` objects: `BCStack.java`, `BCStackLinkedList.java`, and `Postfix.java`. You don't need to do anything with the first two files. Instead, you will "refactor" `Postfix.java` so that it works with `Fraction` objects. 
 
-This will involve 
+This will involve:
 
-* changing all the `double` and `Double` references to `Fraction`
-* modifying how you call the arithmetic operations so that they are the methods on `Fraction`
+* changing all the `Double` references to `Fraction`
+* modifying how you call the arithmetic operations so that they are the equivalent methods on `Fraction`
 * doing fancier parsing of the string to turn a `String` into a `FractionClass` object
 
 The first two changes should be straightforward. The third change will be a little tricky so I will give you a big hint. In the `Double` version of this class, if the `String` chunk under consideration was not an operator, you called `Double.parseDouble(e)` to turn it into a `Double` and then pushed that `Double` on the stack. Here you will need to first divide the `String` chunk, `e`, into two parts: the part before the `/` and the part after the `/`. Then you'll turn each of those part into a `Long` using `Long.parseLong()`. Then you'll create a new `FractionClass` with those components. You can do this as follows (but don't forget to implement the last two commented lines!).
