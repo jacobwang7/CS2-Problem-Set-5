@@ -32,7 +32,7 @@ This is a new kind of interface for us because it **extends another interface**!
 
 **Note: You do not need to modify the interface in any way. You just need to implement the interface, as descibed below and in the code for `FractionClass.java`.**
 
-## The `FractionClass` implementation of the `Fraction` interface
+## PART 1: The `FractionClass` implementation of the `Fraction` interface
 
 You will implement the `Fraction.java` interface in a class called `FractionClass.java`. `FractionClass.java` will need to implement: (1) all the methods in the `Fraction` interface; (2) the `compareTo()` method from the `Comparable` interface; (3) a constructor; and (4) a main method for testing your code.
 
@@ -75,7 +75,7 @@ The `main()` method of `FractionClass.java` runs some *unit tests*, which help y
 
 You must provide **two additional unit tests of each of the mathematical operations and `compareTo()`** using different `Fraction` objects. Make your code look like the code provided for unit testing in `main()`. Specifically, in the comments, indicate what the expected output should be.
 
-## Refactoring the `PostFix` class
+## PART 2: Refactoring the `PostFix` class
 You'll recall that in lecture, we twice wrote a `Postfix` class to be able to do arithmetic with postfix notation using a stack. In the `src` directory, I have provided all of the necessary code for doing this with `Double` objects: `BCStack.java`, `BCStackLinkedList.java`, and `Postfix.java`. You don't need to do anything with the first two files. Instead, you will "refactor" `Postfix.java` so that it works with `Fraction` objects. 
 
 This will involve 
