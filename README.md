@@ -8,7 +8,7 @@ The interface you will be implementing is a specification for carrying out mathe
 
 The methods you write will perform arithmetic operations with fractions just the way you did in elementary school. For adding and subtracting, you need to ensure that the denominators are the same. To multiply, you multiply the two numerators to get the new numerator, and multiply the two denominators to get the new denominator. To divide, you flip the second fraction over and multiply. Of course, like in elementary school, you have to reduce your resulting fraction to lowest terms! And you will always return another `Fraction` and never a decimal.
 
-The class you will refactor is one 
+Finally you will refactor the `Postfix` class we wrote together so that it can handle objects of your new `Fraction` class.
 
 ## The `Fraction` interface
 
@@ -73,26 +73,26 @@ Use the constructor to set the `numerator` and `denominator` instance variables.
 ### 4. Unit testing in `main()`
 The `main()` method of `FractionClass.java` runs some *unit tests*, which help you determine whether you are doing things correctly. When you run your code and uncomment what is in the main method, you should see the output that is indicated in the comments to the right of each method call in the main method.
 
-You must provide **an additional unit test of all of the mathematical operations** using different `Fraction` objects. Make your code look like the code provided for unit testing in `main()`. Specifically, in the comments, indicate what the expected output should be.
+You must provide **two additional unit tests of each of the mathematical operations and `compareTo()`** using different `Fraction` objects. Make your code look like the code provided for unit testing in `main()`. Specifically, in the comments, indicate what the expected output should be.
 
 ## Refactoring the `PostFix` class
-You'll recall that in lecture, we twice wrote a `Postfix` class to be able to do arithmetic with postfix notation using a stack. In the `src` directory, I have provided all of the necessary code for doing this with `Double` objects: `BCStack.java`, `BCStackLinkedList.java`, and `Postfix.java`. You don't need to do anything with the first two files. Instead, you will "refactor" `Postfix.java` so that it works with objects in the `FractionClass` class. 
+You'll recall that in lecture, we twice wrote a `Postfix` class to be able to do arithmetic with postfix notation using a stack. In the `src` directory, I have provided all of the necessary code for doing this with `Double` objects: `BCStack.java`, `BCStackLinkedList.java`, and `Postfix.java`. You don't need to do anything with the first two files. Instead, you will "refactor" `Postfix.java` so that it works with `Fraction` objects. 
 
 This will involve 
 
-* changing all the `double` and `Double` references to `FractionClass`
-* modifying how you call the arithmetic operations so that they are the methods on `FractionClass`
-* doing fancier parsing of the string to turn a `String` into a `FractionClass`
+* changing all the `double` and `Double` references to `Fraction`
+* modifying how you call the arithmetic operations so that they are the methods on `Fraction`
+* doing fancier parsing of the string to turn a `String` into a `FractionClass` object
 
-The first two changes should be straightforward. The third change will be a little tricky so I will give you a big hint. In the `Double` version of this class, if the `String` chunk under consideration was not an operator, you called `Double.parseDouble(e)` to turn it into a `Double` and then pushed that `Double` on the stack. Here you will need to first divide the `String` chunk, `e`, into two parts: the part before the `/` and the part after the `/`. Then you'll create a new `FractionClass` with those components. You can do this as follows:
+The first two changes should be straightforward. The third change will be a little tricky so I will give you a big hint. In the `Double` version of this class, if the `String` chunk under consideration was not an operator, you called `Double.parseDouble(e)` to turn it into a `Double` and then pushed that `Double` on the stack. Here you will need to first divide the `String` chunk, `e`, into two parts: the part before the `/` and the part after the `/`. Then you'll turn each of those part into a `Long` using `Long.parseLong()`. Then you'll create a new `FractionClass` with those components. You can do this as follows (but don't forget to implement the last two commented lines!).
 
 ``
 // if e is not one of the four operators...
    String[] fractionparts = e.split("\\/");
    long top = Long.parseLong(fractionparts[0]);
    long bottom = Long.parseLong(fractionparts[1]);
-   // Create a new FractionClass opbject with top and bottom.
-   // Push it onto the the ss Stack.
+   // Create a new FractionClass object with top and bottom.
+   // Push it onto the the mathstack Stack.
 ``
 
 ---
@@ -111,5 +111,5 @@ Once your code works to your satisfaction, push `FractionClass.java` to your per
 
 3. You must comment your code. The TAs are instructed to take off up to 1 point for missing or inadequate comments.
 
-4. The TAs will review and run your code. Note that in addition to running your unit tests, they will try a few of their own. It's a good idea to do some error checking to avoid any surprises during grading.
+4. The TAs will review and run your code with its unit tests. Then they will try out a few `PostFix` expressions. It's a good idea to do some error checking to avoid any surprises during grading.
 
