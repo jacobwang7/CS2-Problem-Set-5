@@ -3,9 +3,8 @@ import java.util.Scanner;
 public class Postfix {
 
   public static void main(String[] args) {
-
-    // Create a stack of Double objects
-    BCStack<Double> ss = new BCStackArray<Double>();
+    // Create a stack of Fraction objects
+    BCStack<Fraction> ss = new BCStackLinkedList<Fraction>();
 
     // Get input from user.
     System.out.println("Enter an expression to evaluate: ");
@@ -22,31 +21,40 @@ public class Postfix {
       // if the chunk is an operator, pop the last two
       // things off the stack and carry out that operation
       if (e.equals("+")) {
-        Double d2 = ss.pop();
-        Double d1 = ss.pop();
-        Double result = d1 + d2;
+        Fraction d2 = ss.pop();
+        Fraction d1 = ss.pop();
+        Fraction result = d1.plus(d2);
         ss.push(result);
+        //.plus adds the two fraction classes
       } else if (e.equals("-")) {
-        Double d2 = ss.pop();
-        Double d1 = ss.pop();
-        Double result = d1 - d2;
+        Fraction d2 = ss.pop();
+        Fraction d1 = ss.pop();
+        Fraction result = d1.subtract(d2);
         ss.push(result);
+        //.subtract finds the difference between the two fraction classes
       } else if (e.equals("*")) {
-        Double d2 = ss.pop();
-        Double d1 = ss.pop();
-        Double result = d1 * d2;
+        Fraction d2 = ss.pop();
+        Fraction d1 = ss.pop();
+        Fraction result = d1.multiply(d2);
         ss.push(result);
+        //.multiply finds the product of the two fraction classes
       } else if (e.equals("/")) {
-        Double d2 = ss.pop();
-        Double d1 = ss.pop();
-        Double result = d1 / d2;
+        Fraction d2 = ss.pop();
+        Fraction d1 = ss.pop();
+        Fraction result = d1.divide(d2);
         ss.push(result);
+        //.divide whill divide the two fraction classes
       }
-      // Otherwise, if it's not an operator, it's a
-      // numberm, so push it on the stack!
+      // if e is not one of the four operators...
       else {
-        ss.push(Double.parseDouble(e));
+        String[] fractionparts = e.split("\\/");
+        long top = Long.parseLong(fractionparts[0]);
+        long bottom = Long.parseLong(fractionparts[1]);
+        FractionClass frac = new FractionClass(top, bottom);
+        ss.push(frac);
       }
+      // Create a new FractionClass object with top and bottom.
+      // Push it onto the the mathstack Stack.
     }
 
     // print out the stack
